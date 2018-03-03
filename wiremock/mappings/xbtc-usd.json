@@ -1,0 +1,15 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/api/v1/xbtc/usd"
+    },
+    "response": {
+        "status": 200,
+    	"body": 15317.20,
+    	"delayDistribution": {
+    		"type": "uniform",
+    		"lower": 2000,
+    		"upper": 3000
+    	}
+    }
+}

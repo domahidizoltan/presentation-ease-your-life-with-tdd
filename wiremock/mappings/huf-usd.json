@@ -1,0 +1,15 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/api/v1/huf/usd"
+    },
+    "response": {
+        "status": 200,
+    	"body": 0.0039,
+    	"delayDistribution": {
+    		"type": "uniform",
+    		"lower": 2000,
+    		"upper": 3000
+    	}
+    }
+}
