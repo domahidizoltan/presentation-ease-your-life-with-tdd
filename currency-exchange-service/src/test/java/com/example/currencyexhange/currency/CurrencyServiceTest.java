@@ -3,9 +3,13 @@ package com.example.currencyexhange.currency;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.math.BigDecimal;
+
 import static org.junit.Assert.assertEquals;
+import static org.mockito.BDDMockito.given;
 
 @RunWith(SpringRunner.class)
 public class CurrencyServiceTest {
@@ -13,19 +17,25 @@ public class CurrencyServiceTest {
     private static final String ANY_FROM_CCY = "eur";
     private static final String ANY_TO_CCY = "huf";
     private static final int ANY_EXCHANGE_QTY = 10;
+    private static final double BENEFIT = 1.001;
 
     private CurrencyService underTest;
 
+    @Mock
+    private CurrencyRepository currencyRepositoryMock;
+
     @Before
     public void setUp() {
-        underTest = new CurrencyService();
+        underTest = new CurrencyService(currencyRepositoryMock, BENEFIT);
     }
 
     @Test
     public void shouldGetRateFromUpstreamService() {
-        double actualExchangePrice = underTest.exchangeCurrencies(ANY_FROM_CCY, ANY_TO_CCY, ANY_EXCHANGE_QTY);
+        given(currencyRepositoryMock.getRate(ANY_FROM_CCY, ANY_TO_CCY)).willReturn(10.0);
 
-        assertEquals(100.1, actualExchangePrice, 0);
+        BigDecimal actualExchangePrice = underTest.exchangeCurrencies(ANY_FROM_CCY, ANY_TO_CCY, ANY_EXCHANGE_QTY);
+
+        assertEquals(100.1, actualExchangePrice.doubleValue(), 0);
     }
 
 
