@@ -8,6 +8,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import static com.example.currencyexhange.currency.helper.CurrencyTestHelper.ANY_FROM_CCY;
+import static com.example.currencyexhange.currency.helper.CurrencyTestHelper.ANY_TO_CCY;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.anyString;
@@ -16,8 +18,6 @@ import static org.mockito.Matchers.eq;
 @RunWith(SpringRunner.class)
 public class CurrencyRepositoryTest {
 
-    private static final String ANY_FROM_CCY = "eur";
-    private static final String ANY_TO_CCY = "huf";
     private static final double ANY_EXCHANGE_RATE = 123.4;
     private static final String ANY_EXCHANGE_URL = "http://upstreamservice/";
 
