@@ -13,7 +13,16 @@ public class CurrencyController {
 
     @GetMapping("{fromCcy}-to-{toCcy}")
     public String getRate(@PathVariable String fromCcy, @PathVariable String toCcy, @RequestParam Integer qty) {
-        BigDecimal result = BigDecimal.valueOf(getRate(fromCcy, toCcy) * qty * 1.001).setScale(2, RoundingMode.UP);
+        double benefit = 1.001;
+        double xRate = 1;
+        if (fromCcy.startsWith("x")) {
+            benefit = 1.0015;
+            xRate = getRate(fromCcy, "usd");
+            fromCcy = "usd";
+        }
+
+        double rate = getRate(fromCcy, toCcy);
+        BigDecimal result = BigDecimal.valueOf(rate * xRate * qty * benefit).setScale(2, RoundingMode.UP);
         return String.format("%.2f %s", result, CurrencyNameHelper.getCurrencyName(toCcy));
     }
 
@@ -22,6 +31,5 @@ public class CurrencyController {
         String rate = restTemplate.getForObject("http://localhost:9000/api/v1/" + fromCcy + "/" + toCcy, String.class);
         return Double.valueOf(rate);
     }
-
 
 }
