@@ -1,21 +1,23 @@
 package com.example.currencyexhange.currency;
 
+import com.example.currencyexhange.currency.calculator.ExchangePriceCalculator;
+import com.example.currencyexhange.currency.calculator.ExchangePriceCalculatorFactory;
+
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 public class CurrencyService {
 
     private CurrencyRepository currencyRepository;
-    private double benefit;
+    private ExchangePriceCalculatorFactory exchangePriceCalculatorFactory;
 
-    public CurrencyService(CurrencyRepository currencyRepository, double benefit) {
+    public CurrencyService(CurrencyRepository currencyRepository, ExchangePriceCalculatorFactory exchangePriceCalculatorFactory) {
         this.currencyRepository = currencyRepository;
-        this.benefit = benefit;
+        this.exchangePriceCalculatorFactory = exchangePriceCalculatorFactory;
     }
 
     public BigDecimal exchangeCurrencies(String fromCcy, String toCcy, int exchangeQty) {
-        double rate = currencyRepository.getRate(fromCcy, toCcy);
-        BigDecimal exchangePrice = BigDecimal.valueOf(rate * exchangeQty * benefit).setScale(2, RoundingMode.UP);
+        ExchangePriceCalculator calculator = exchangePriceCalculatorFactory.getCalculator(fromCcy);
+        BigDecimal exchangePrice = calculator.calculate(fromCcy, toCcy, exchangeQty);
         return exchangePrice;
     }
 

@@ -1,5 +1,7 @@
 package com.example.currencyexhange.currency;
 
+import com.example.currencyexhange.currency.calculator.ExchangePriceCalculator;
+import com.example.currencyexhange.currency.calculator.ExchangePriceCalculatorFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,14 +23,21 @@ public class CurrencyServiceTest {
     @Mock
     private CurrencyRepository currencyRepositoryMock;
 
+    @Mock
+    private ExchangePriceCalculatorFactory exchangePriceCalculatorFactoryMock;
+
+    @Mock
+    private ExchangePriceCalculator exchangePriceCalculatorMock;
+
     @Before
     public void setUp() {
-        underTest = new CurrencyService(currencyRepositoryMock, SIMPLE_BENEFIT);
+        underTest = new CurrencyService(currencyRepositoryMock, exchangePriceCalculatorFactoryMock);
     }
 
     @Test
     public void shouldGetRateFromUpstreamService() {
-        given(currencyRepositoryMock.getRate(ANY_FROM_CCY, ANY_TO_CCY)).willReturn(10.0);
+        given(exchangePriceCalculatorFactoryMock.getCalculator(ANY_FROM_CCY)).willReturn(exchangePriceCalculatorMock);
+        given(exchangePriceCalculatorMock.calculate(ANY_FROM_CCY, ANY_TO_CCY, ANY_EXCHANGE_QTY)).willReturn(new BigDecimal(100.1));
 
         BigDecimal actualExchangePrice = underTest.exchangeCurrencies(ANY_FROM_CCY, ANY_TO_CCY, ANY_EXCHANGE_QTY);
 

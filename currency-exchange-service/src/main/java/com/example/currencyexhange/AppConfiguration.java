@@ -2,6 +2,7 @@ package com.example.currencyexhange;
 
 import com.example.currencyexhange.currency.CurrencyRepository;
 import com.example.currencyexhange.currency.CurrencyService;
+import com.example.currencyexhange.currency.calculator.ExchangePriceCalculatorFactory;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,8 +24,8 @@ public class AppConfiguration {
     }
 
     @Bean
-    public CurrencyService currencyService(CurrencyRepository currencyRepository, ConfigProperties configProperties) {
-        return new CurrencyService(currencyRepository, configProperties.getSimpleBenefit());
+    public CurrencyService currencyService(CurrencyRepository currencyRepository, ExchangePriceCalculatorFactory exchangePriceCalculatorFactory) {
+        return new CurrencyService(currencyRepository, exchangePriceCalculatorFactory);
     }
 
 }
