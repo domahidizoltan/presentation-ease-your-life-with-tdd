@@ -2,19 +2,15 @@ package com.example.currencyexhange;
 
 import com.example.currencyexhange.currency.CurrencyRepository;
 import com.example.currencyexhange.currency.CurrencyService;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
+@EnableConfigurationProperties(ConfigProperties.class)
 public class AppConfiguration {
 
-    @Value("${config.exchangeUrl}")
-    private String exchangeUrl;
-
-    @Value("${config.exchange.benefit}")
-    private double benefit;
 
     @Bean
     public RestTemplate restTemplate() {
@@ -22,13 +18,13 @@ public class AppConfiguration {
     }
 
     @Bean
-    public CurrencyRepository currencyRepository(RestTemplate restTemplate) {
-        return new CurrencyRepository(restTemplate, exchangeUrl);
+    public CurrencyRepository currencyRepository(RestTemplate restTemplate, ConfigProperties configProperties) {
+        return new CurrencyRepository(restTemplate, configProperties.getUrl());
     }
 
     @Bean
-    public CurrencyService currencyService(CurrencyRepository currencyRepository) {
-        return new CurrencyService(currencyRepository, benefit);
+    public CurrencyService currencyService(CurrencyRepository currencyRepository, ConfigProperties configProperties) {
+        return new CurrencyService(currencyRepository, configProperties.getSimpleBenefit());
     }
 
 }
