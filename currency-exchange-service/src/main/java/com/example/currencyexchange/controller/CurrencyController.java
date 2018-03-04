@@ -32,4 +32,5 @@ public class CurrencyController {
         return Double.valueOf(rate);
     }
 
+
 }
