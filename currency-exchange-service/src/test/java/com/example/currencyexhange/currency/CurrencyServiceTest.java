@@ -15,7 +15,6 @@ import static org.mockito.BDDMockito.given;
 @RunWith(SpringRunner.class)
 public class CurrencyServiceTest {
 
-    private static final double BENEFIT = 1.001;
 
     private CurrencyService underTest;
 
@@ -24,7 +23,7 @@ public class CurrencyServiceTest {
 
     @Before
     public void setUp() {
-        underTest = new CurrencyService(currencyRepositoryMock, BENEFIT);
+        underTest = new CurrencyService(currencyRepositoryMock, SIMPLE_BENEFIT);
     }
 
     @Test

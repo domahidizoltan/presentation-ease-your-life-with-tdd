@@ -23,7 +23,7 @@ public class CryptoExchangePriceCalculatorTest {
 
     @Before
     public void setUp() {
-        underTest = new CryptoExchangePriceCalculator(currencyRepositoryMock);
+        underTest = new CryptoExchangePriceCalculator(currencyRepositoryMock, 1.0015, ANY_FROM_CCY);
     }
 
     @Test

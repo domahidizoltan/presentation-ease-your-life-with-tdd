@@ -10,5 +10,6 @@ public final class CurrencyTestHelper {
     public static final String ANY_TO_CCY = "huf";
     public static final String ANY_TO_CCY_NAME = "Hungarian Forints";
     public static final int ANY_EXCHANGE_QTY = 10;
+    public static final double SIMPLE_BENEFIT = 1.001;
 
 }

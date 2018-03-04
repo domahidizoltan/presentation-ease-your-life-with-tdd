@@ -3,3 +3,4 @@ config:
     url: http://localhost:9000/api/v1/
     simpleBenefit: 1.001
     cryptoBenefit: 1.0015
+    baseCurrency: usd

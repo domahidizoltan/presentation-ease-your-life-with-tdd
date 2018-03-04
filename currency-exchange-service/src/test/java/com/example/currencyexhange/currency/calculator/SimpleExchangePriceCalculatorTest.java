@@ -5,14 +5,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
 
-import static com.example.currencyexhange.currency.helper.CurrencyTestHelper.ANY_EXCHANGE_QTY;
-import static com.example.currencyexhange.currency.helper.CurrencyTestHelper.ANY_FROM_CCY;
-import static com.example.currencyexhange.currency.helper.CurrencyTestHelper.ANY_TO_CCY;
+import static com.example.currencyexhange.currency.helper.CurrencyTestHelper.*;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.given;
 
@@ -26,7 +23,7 @@ public class SimpleExchangePriceCalculatorTest {
 
     @Before
     public void setUp() {
-        underTest = new SimpleExchangePriceCalculator(currencyRepositoryMock);
+        underTest = new SimpleExchangePriceCalculator(currencyRepositoryMock, SIMPLE_BENEFIT);
     }
 
     @Test

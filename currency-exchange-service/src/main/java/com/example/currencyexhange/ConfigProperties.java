@@ -8,6 +8,7 @@ public class ConfigProperties {
     private String url;
     private double simpleBenefit;
     private double cryptoBenefit;
+    private String baseCurrency;
 
     public String getUrl() {
         return url;
@@ -31,5 +32,13 @@ public class ConfigProperties {
 
     public void setCryptoBenefit(double cryptoBenefit) {
         this.cryptoBenefit = cryptoBenefit;
+    }
+
+    public String getBaseCurrency() {
+        return baseCurrency;
+    }
+
+    public void setBaseCurrency(String baseCurrency) {
+        this.baseCurrency = baseCurrency;
     }
 }
