@@ -11,7 +11,12 @@ public class ExchangePriceCalculatorFactory {
     }
 
     public ExchangePriceCalculator getCalculator(String fromCcy) {
-        return null;
+        String key = "simple";
+        if (fromCcy.toLowerCase().startsWith("x")) {
+            key = "crypto";
+        }
+
+        return calculatorMap.get(key);
     }
 
 }
