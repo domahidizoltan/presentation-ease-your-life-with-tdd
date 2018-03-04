@@ -1,4 +1,4 @@
-package com.example.currencyexhange.currency.model;
+package com.example.currencyexhange.currency;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestClientException;

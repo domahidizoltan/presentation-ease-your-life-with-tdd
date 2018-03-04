@@ -1,4 +1,4 @@
-package com.example.currencyexhange.currency.model;
+package com.example.currencyexhange.currency;
 
 public class DataAccessException extends RuntimeException {
 

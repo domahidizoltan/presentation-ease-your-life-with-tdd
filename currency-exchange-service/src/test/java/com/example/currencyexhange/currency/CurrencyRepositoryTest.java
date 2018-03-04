@@ -1,4 +1,4 @@
-package com.example.currencyexhange.currency.model;
+package com.example.currencyexhange.currency;
 
 import org.junit.Before;
 import org.junit.Test;
