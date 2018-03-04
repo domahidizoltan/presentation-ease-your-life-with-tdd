@@ -1,6 +1,6 @@
 package com.example.currencyexhange.currency;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.example.currencyexhange.currency.exception.DataAccessException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
@@ -9,7 +9,7 @@ public class CurrencyRepository {
     private RestTemplate restTemplate;
     private String exchangeUrl;
 
-    public CurrencyRepository(RestTemplate restTemplate, @Value("${config.exchangeUrl}") String exchangeUrl) {
+    public CurrencyRepository(RestTemplate restTemplate, String exchangeUrl) {
         this.restTemplate = restTemplate;
         this.exchangeUrl = exchangeUrl;
     }

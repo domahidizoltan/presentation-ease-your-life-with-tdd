@@ -1,4 +1,4 @@
-package com.example.currencyexhange.currency;
+package com.example.currencyexhange.currency.exception;
 
 public class DataAccessException extends RuntimeException {
 
@@ -10,4 +10,13 @@ public class DataAccessException extends RuntimeException {
         this.cause = cause;
     }
 
+    @Override
+    public String getMessage() {
+        return message;
+    }
+
+    @Override
+    public Throwable getCause() {
+        return cause;
+    }
 }

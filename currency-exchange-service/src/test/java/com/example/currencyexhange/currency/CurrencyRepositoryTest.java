@@ -1,5 +1,6 @@
 package com.example.currencyexhange.currency;
 
+import com.example.currencyexhange.currency.exception.DataAccessException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

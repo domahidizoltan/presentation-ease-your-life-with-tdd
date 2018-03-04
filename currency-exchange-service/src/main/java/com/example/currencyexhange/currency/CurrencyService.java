@@ -1,7 +1,5 @@
 package com.example.currencyexhange.currency;
 
-import org.springframework.beans.factory.annotation.Value;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
@@ -10,7 +8,7 @@ public class CurrencyService {
     private CurrencyRepository currencyRepository;
     private double benefit;
 
-    public CurrencyService(CurrencyRepository currencyRepository, @Value("@{config.exchange.benefit}") double benefit) {
+    public CurrencyService(CurrencyRepository currencyRepository, double benefit) {
         this.currencyRepository = currencyRepository;
         this.benefit = benefit;
     }
@@ -21,4 +19,7 @@ public class CurrencyService {
         return exchangePrice;
     }
 
+    public String getNameOfCurrency(String ccy) {
+        return "Hungarian Forints";
+    }
 }
