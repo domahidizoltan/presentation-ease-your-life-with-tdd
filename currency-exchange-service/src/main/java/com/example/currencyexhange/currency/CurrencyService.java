@@ -20,6 +20,6 @@ public class CurrencyService {
     }
 
     public String getNameOfCurrency(String ccy) {
-        return "Hungarian Forints";
+        return currencyRepository.getCurrencyName(ccy);
     }
 }

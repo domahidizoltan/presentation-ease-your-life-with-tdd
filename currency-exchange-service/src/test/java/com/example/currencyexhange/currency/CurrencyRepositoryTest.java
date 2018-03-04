@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 import static com.example.currencyexhange.currency.helper.CurrencyTestHelper.ANY_FROM_CCY;
 import static com.example.currencyexhange.currency.helper.CurrencyTestHelper.ANY_TO_CCY;
+import static com.example.currencyexhange.currency.helper.CurrencyTestHelper.ANY_TO_CCY_NAME;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.anyString;
@@ -50,4 +51,10 @@ public class CurrencyRepositoryTest {
         underTest.getRate(ANY_FROM_CCY, ANY_TO_CCY);
     }
 
+    @Test
+    public void shouldResolveCurrencyName() {
+        String actualCurrencyName = underTest.getCurrencyName(ANY_TO_CCY);
+
+        assertEquals(ANY_TO_CCY_NAME, actualCurrencyName);
+    }
 }

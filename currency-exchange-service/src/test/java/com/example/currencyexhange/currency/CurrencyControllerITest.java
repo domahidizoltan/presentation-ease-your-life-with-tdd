@@ -41,7 +41,7 @@ public class CurrencyControllerITest {
 
         mockMvc.perform(EXCHANGE_REQUEST)
             .andExpect(status().isOk())
-            .andExpect(content().string("2555.66 Hungarian Forints"));
+            .andExpect(content().string("2555.66 " + ANY_TO_CCY_NAME));
     }
 
     @Test

@@ -8,9 +8,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
 
-import static com.example.currencyexhange.currency.helper.CurrencyTestHelper.ANY_EXCHANGE_QTY;
-import static com.example.currencyexhange.currency.helper.CurrencyTestHelper.ANY_FROM_CCY;
-import static com.example.currencyexhange.currency.helper.CurrencyTestHelper.ANY_TO_CCY;
+import static com.example.currencyexhange.currency.helper.CurrencyTestHelper.*;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.given;
 
@@ -38,5 +36,13 @@ public class CurrencyServiceTest {
         assertEquals(100.1, actualExchangePrice.doubleValue(), 0);
     }
 
+    @Test
+    public void shouldGetCurrencyName() {
+        given(currencyRepositoryMock.getCurrencyName(ANY_TO_CCY)).willReturn(ANY_TO_CCY_NAME);
+
+        String actualCurrencyName = underTest.getNameOfCurrency(ANY_TO_CCY);
+
+        assertEquals(ANY_TO_CCY_NAME, actualCurrencyName);
+    }
 
 }
