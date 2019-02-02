@@ -1,0 +1,10 @@
+@startuml
+actor :User:
+cloud api #LightBlue
+
+package "Currency Exchange Service" {
+    User -down-> [controller] : getRate
+}
+
+[controller] -> api : "                "
+@enduml

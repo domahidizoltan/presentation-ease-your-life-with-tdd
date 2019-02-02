@@ -1,0 +1,19 @@
+@startuml
+actor :User:
+cloud api #LightBlue
+
+package "Currency Exchange Service" {
+    package service {
+      [ExchangePriceCalculator] <- [ExchangePriceCalculatorFactory]
+      [ExchangePriceCalculator] --> [SimpleExchangePriceCalculator]
+      [ExchangePriceCalculator] ---> [CryptoExchangePriceCalculator]
+    }
+
+    User -down-> [controller] : getRate
+    [controller] -down-> [ExchangePriceCalculatorFactory]
+    [SimpleExchangePriceCalculator] -down-> [repository]
+    [CryptoExchangePriceCalculator] -down-> [repository]
+}
+
+[repository] -> api : "                "
+@enduml
